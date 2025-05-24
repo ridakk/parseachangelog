@@ -1,0 +1,59 @@
+{
+  "versions": [
+    {
+      "version": "Unreleased",
+      "Added": [
+        "New feature X",
+        "New feature Y"
+      ],
+      "Changed": [
+        "Updated API response format",
+        "Improved performance"
+      ],
+      "Deprecated": [
+        "Old API endpoint",
+        "Legacy authentication method"
+      ],
+      "Removed": [
+        "Deprecated feature A",
+        "Deprecated feature B"
+      ],
+      "Fixed": [
+        "Bug in authentication",
+        "Memory leak in cache"
+      ],
+      "Security": [
+        "Fixed SQL injection vulnerability",
+        "Updated dependencies for security patches"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2024-05-06",
+      "Added": [
+        "Initial release",
+        "Basic functionality"
+      ],
+      "Changed": [
+        "Improved error handling",
+        "Updated documentation"
+      ],
+      "Deprecated": [
+        "Old configuration format",
+        "Legacy database schema"
+      ],
+      "Removed": [
+        "Deprecated API v1",
+        "Old logging system"
+      ],
+      "Fixed": [
+        "Critical bug in authentication",
+        "Performance issues"
+      ],
+      "Security": [
+        "Fixed XSS vulnerability",
+        "Updated SSL certificates"
+      ]
+    }
+  ]
+} 
