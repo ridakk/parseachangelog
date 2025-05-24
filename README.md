@@ -1,12 +1,12 @@
-# parseachangelog
+# Parse a Changelog
 
-[![Go CI](https://github.com/ridakk/parseachangelog/actions/workflows/test.yml/badge.svg)](https://github.com/ridakk/parseachangelog/actions/workflows/test.yml)
-[![codecov](https://codecov.io/gh/ridakk/parseachangelog/branch/main/graph/badge.svg)](https://codecov.io/gh/ridakk/parseachangelog)
+A Go library and CLI tool for parsing Keep a Changelog markdown files into structured JSON format.
 
-> Replace <OWNER> and <REPO> with your GitHub username and repository name after pushing.
-> For coverage badge, sign up at [Codecov](https://about.codecov.io/) and connect your repo.
-
-A Go library and CLI tool for parsing [Keep a Changelog](https://keepachangelog.com/) markdown files into structured JSON format.
+[![Go Report Card](https://goreportcard.com/badge/github.com/ridakk/parseachangelog)](https://goreportcard.com/report/github.com/ridakk/parseachangelog)
+[![GoDoc](https://godoc.org/github.com/ridakk/parseachangelog?status.svg)](https://godoc.org/github.com/ridakk/parseachangelog)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Test](https://github.com/ridakk/parseachangelog/actions/workflows/test.yml/badge.svg)](https://github.com/ridakk/parseachangelog/actions/workflows/test.yml)
+[![Coverage](https://codecov.io/gh/ridakk/parseachangelog/branch/main/graph/badge.svg)](https://codecov.io/gh/ridakk/parseachangelog)
 
 ## Features
 
@@ -18,11 +18,24 @@ A Go library and CLI tool for parsing [Keep a Changelog](https://keepachangelog.
 
 ## Installation
 
+### Using Homebrew
+
 ```bash
-go get github.com/ridakk/parseachangelog
+# Install directly from the repository
+brew install ridakk/parseachangelog/parseachangelog
 ```
 
-## Usage
+### Manual Installation
+
+Download the latest release from the [releases page](https://github.com/ridakk/parseachangelog/releases) and extract the binary to your PATH.
+
+### From Source
+
+```bash
+git clone https://github.com/ridakk/parseachangelog.git
+cd parseachangelog
+make build
+```
 
 ### As a Library
 
