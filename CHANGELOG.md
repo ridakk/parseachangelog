@@ -14,7 +14,7 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased]
+## [0.1.1] - 2025-05-24
 
 ### Added
 - Initial open-source release of `parseachangelog`.

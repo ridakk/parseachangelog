@@ -1,4 +1,4 @@
-.PHONY: test lint format coverage debug build run build-all clean
+.PHONY: test lint format coverage debug build run build-all clean release
 
 # Run tests with coverage
 coverage:
@@ -52,3 +52,39 @@ run:
 
 test-all: format test coverage
 	@echo "All checks passed!"
+
+# Release target
+release:
+	@if [ -z "$(version)" ]; then \
+		echo "Error: version is required. Usage: make release version=X.Y.Z"; \
+		exit 1; \
+	fi
+	@echo "Updating version to $(version)..."
+	@# Update version in main.go
+	@if [ "$(shell uname)" = "Darwin" ]; then \
+		sed -i '' 's/Version = ".*"/Version = "$(version)"/' main.go; \
+	else \
+		sed -i 's/Version = ".*"/Version = "$(version)"/' main.go; \
+	fi
+	@# Update version in homebrew formula
+	@if [ "$(shell uname)" = "Darwin" ]; then \
+		sed -i '' 's/version ".*"/version "$(version)"/' homebrew/parseachangelog.rb; \
+	else \
+		sed -i 's/version ".*"/version "$(version)"/' homebrew/parseachangelog.rb; \
+	fi
+	@# Update version in CHANGELOG.md if it exists
+	@if [ -f CHANGELOG.md ]; then \
+		if [ "$(shell uname)" = "Darwin" ]; then \
+			sed -i '' 's/^## \[Unreleased\]/## [$(version)] - '$$(date +%Y-%m-%d)'/' CHANGELOG.md; \
+		else \
+			sed -i 's/^## \[Unreleased\]/## [$(version)] - '$$(date +%Y-%m-%d)'/' CHANGELOG.md; \
+		fi \
+	fi
+	@# Create git tag
+	@git add main.go homebrew/parseachangelog.rb CHANGELOG.md
+	@git commit -m "Release version $(version)"
+	@git tag -a "v$(version)" -m "Release version $(version)"
+	@echo "Created tag v$(version)"
+	@echo "To push the release, run:"
+	@echo "  git push origin main"
+	@echo "  git push origin v$(version)"

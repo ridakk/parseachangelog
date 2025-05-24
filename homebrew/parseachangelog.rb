@@ -1,7 +1,7 @@
 class Parseachangelog < Formula
   desc "A Go library and CLI tool for parsing Keep a Changelog markdown files into structured JSON format"
   homepage "https://github.com/ridakk/parseachangelog"
-  version "0.1.0"  # Update this with your first release version
+  version "0.1.1"  # Update this with your first release version
 
   on_macos do
     if Hardware::CPU.intel?
