@@ -80,11 +80,12 @@ release:
 			sed -i 's/^## \[Unreleased\]/## [$(version)] - '$$(date +%Y-%m-%d)'/' CHANGELOG.md; \
 		fi \
 	fi
-	@# Create git tag
+	@# Create git tag and push
 	@git add main.go homebrew/parseachangelog.rb CHANGELOG.md
 	@git commit -m "Release version $(version)"
 	@git tag -a "v$(version)" -m "Release version $(version)"
-	@echo "Created tag v$(version)"
-	@echo "To push the release, run:"
-	@echo "  git push origin main"
-	@echo "  git push origin v$(version)"
+	@echo "Pushing changes to main branch..."
+	@git push origin main
+	@echo "Pushing tag v$(version)..."
+	@git push origin v$(version)
+	@echo "Release v$(version) completed successfully!"
