@@ -66,12 +66,6 @@ release:
 	else \
 		sed -i 's/Version = ".*"/Version = "$(version)"/' main.go; \
 	fi
-	@# Update version in homebrew formula
-	@if [ "$(shell uname)" = "Darwin" ]; then \
-		sed -i '' 's/version ".*"/version "$(version)"/' homebrew/parseachangelog.rb; \
-	else \
-		sed -i 's/version ".*"/version "$(version)"/' homebrew/parseachangelog.rb; \
-	fi
 	@# Update version in CHANGELOG.md if it exists
 	@if [ -f CHANGELOG.md ]; then \
 		if [ "$(shell uname)" = "Darwin" ]; then \
@@ -81,7 +75,7 @@ release:
 		fi \
 	fi
 	@# Create git tag and push
-	@git add main.go homebrew/parseachangelog.rb CHANGELOG.md
+	@git add main.go CHANGELOG.md
 	@git commit -m "Release version $(version)"
 	@git tag -a "v$(version)" -m "Release version $(version)"
 	@echo "Pushing changes to main branch..."

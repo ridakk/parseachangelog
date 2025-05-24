@@ -18,13 +18,6 @@ A Go library and CLI tool for parsing Keep a Changelog markdown files into struc
 
 ## Installation
 
-### Using Homebrew
-
-```bash
-# Install directly from the repository
-brew install ridakk/parseachangelog/parseachangelog
-```
-
 ### Manual Installation
 
 Download the latest release from the [releases page](https://github.com/ridakk/parseachangelog/releases) and extract the binary to your PATH.
