@@ -8,7 +8,7 @@
 set -u
 
 APP_NAME="parseachangelog"
-APP_VERSION="0.1.2"
+APP_VERSION="0.1.3"
 
 # Look for GitHub Enterprise-style base URL first
 if [ -n "${PARSEACHANGELOG_INSTALLER_GHE_BASE_URL:-}" ]; then

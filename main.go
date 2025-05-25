@@ -8,7 +8,7 @@ import (
 	"github.com/ridakk/parseachangelog/parser"
 )
 
-var Version = "0.1.1" // This will be updated by the release process
+var Version = "0.1.3" // This will be updated by the release process
 
 func main() {
 	inputFile := flag.String("input", "CHANGELOG.md", "Path to the changelog.md file")
