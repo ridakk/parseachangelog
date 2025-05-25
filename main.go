@@ -8,11 +8,12 @@ import (
 	"github.com/ridakk/parseachangelog/parser"
 )
 
-var Version = "0.1.2" // This will be updated by the release process
+var Version = "0.1.1" // This will be updated by the release process
 
 func main() {
 	inputFile := flag.String("input", "CHANGELOG.md", "Path to the changelog.md file")
 	outputFile := flag.String("output", "", "Path to save the JSON output (default: stdout)")
+	version := flag.String("version", "", "Optional: specific version to extract (e.g., '1.0.0' or 'Unreleased')")
 	flag.Parse()
 
 	// Read input file
@@ -27,6 +28,18 @@ func main() {
 	if err != nil {
 		fmt.Printf("Error parsing changelog: %v\n", err)
 		os.Exit(1)
+	}
+
+	// Filter by version if specified
+	if *version != "" {
+		filteredVersions := []parser.Version{}
+		for _, v := range changelog.Versions {
+			if v.Version == *version {
+				filteredVersions = append(filteredVersions, v)
+				break
+			}
+		}
+		changelog.Versions = filteredVersions
 	}
 
 	// Convert to JSON

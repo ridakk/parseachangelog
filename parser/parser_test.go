@@ -77,3 +77,64 @@ func TestParseChangelog(t *testing.T) {
 		compareJSONFiles(t, jsonBytes, expectedJSON, file.Name())
 	}
 }
+
+func TestVersionFiltering(t *testing.T) {
+	markdown := `# Changelog
+
+## [Unreleased]
+### Added
+- New feature X
+- New feature Y
+
+## [1.0.0] - 2024-05-06
+### Added
+- Initial release
+- Basic functionality
+
+## [0.1.0] - 2024-04-25
+### Added
+- First prototype`
+
+	changelog, err := ParseChangelog(markdown)
+	if err != nil {
+		t.Fatalf("Error parsing changelog: %v", err)
+	}
+
+	// Test cases
+	testCases := []struct {
+		name     string
+		version  string
+		expected int // expected number of versions
+	}{
+		{"Unreleased", "Unreleased", 1},
+		{"Specific Version", "1.0.0", 1},
+		{"Non-existent Version", "2.0.0", 0},
+		{"Empty Version", "", 3}, // should return all versions
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			filteredVersions := []Version{}
+			if tc.version != "" {
+				for _, v := range changelog.Versions {
+					if v.Version == tc.version {
+						filteredVersions = append(filteredVersions, v)
+						break
+					}
+				}
+			} else {
+				filteredVersions = changelog.Versions
+			}
+
+			if len(filteredVersions) != tc.expected {
+				t.Errorf("Expected %d versions for %s, got %d", tc.expected, tc.version, len(filteredVersions))
+			}
+
+			if tc.version != "" && len(filteredVersions) > 0 {
+				if filteredVersions[0].Version != tc.version {
+					t.Errorf("Expected version %s, got %s", tc.version, filteredVersions[0].Version)
+				}
+			}
+		})
+	}
+}

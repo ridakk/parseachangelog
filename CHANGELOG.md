@@ -14,6 +14,16 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.1.3] - 2025-05-24
+
+### Added
+- optionally select a version section.
+
+## [0.1.2] - 2025-05-24
+
+### Added
+- input and output parameters.
+
 ## [0.1.1] - 2025-05-24
 
 ### Added

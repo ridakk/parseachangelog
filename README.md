@@ -15,6 +15,7 @@ A Go library and CLI tool for parsing Keep a Changelog markdown files into struc
 - Multi-platform support (macOS, Windows, Linux)
 - Comprehensive test suite
 - Simple and efficient parsing
+- Filter by specific version or unreleased changes
 
 ## Installation
 
@@ -92,14 +93,23 @@ func main() {
 # Build for your platform
 make build
 
-# Parse a changelog file (defaults to CHANGELOG.md and outputs to stdout)
+# Parse entire changelog (defaults to CHANGELOG.md and outputs to stdout)
 ./parseachangelog
+
+# Parse only unreleased changes
+./parseachangelog -version Unreleased
+
+# Parse a specific version
+./parseachangelog -version 1.0.0
 
 # Parse a custom changelog file
 ./parseachangelog -input custom-changelog.md
 
 # Parse and save to a file
 ./parseachangelog -input CHANGELOG.md -output changes.json
+
+# Combine options
+./parseachangelog -input CHANGELOG.md -version 1.0.0 -output version.json
 ```
 
 ## JSON Output Format

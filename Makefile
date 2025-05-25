@@ -68,16 +68,9 @@ release:
 		sed -i 's/Version = ".*"/Version = "$(version)"/' main.go; \
 		sed -i 's/APP_VERSION=".*"/APP_VERSION="$(version)"/' install.sh; \
 	fi
-	@# Update version in CHANGELOG.md if it exists
-	@if [ -f CHANGELOG.md ]; then \
-		if [ "$(shell uname)" = "Darwin" ]; then \
-			sed -i '' 's/^## \[Unreleased\]/## [$(version)] - '$$(date +%Y-%m-%d)'/' CHANGELOG.md; \
-		else \
-			sed -i 's/^## \[Unreleased\]/## [$(version)] - '$$(date +%Y-%m-%d)'/' CHANGELOG.md; \
-		fi \
-	fi
+
 	@# Create git tag and push
-	@git add main.go CHANGELOG.md install.sh
+	@git add main.go install.sh
 	@git commit -m "Release version $(version)"
 	@git tag -a "v$(version)" -m "Release version $(version)"
 	@echo "Pushing changes to main branch..."
