@@ -10,17 +10,10 @@ set -u
 APP_NAME="parseachangelog"
 APP_VERSION="0.1.3"
 
-# Look for GitHub Enterprise-style base URL first
-if [ -n "${PARSEACHANGELOG_INSTALLER_GHE_BASE_URL:-}" ]; then
-    INSTALLER_BASE_URL="$PARSEACHANGELOG_INSTALLER_GHE_BASE_URL"
-else
-    INSTALLER_BASE_URL="${PARSEACHANGELOG_INSTALLER_GITHUB_BASE_URL:-https://github.com}"
-fi
-
 if [ -n "${INSTALLER_DOWNLOAD_URL:-}" ]; then
     ARTIFACT_DOWNLOAD_URL="$INSTALLER_DOWNLOAD_URL"
 else
-    ARTIFACT_DOWNLOAD_URL="${INSTALLER_BASE_URL}/ridakk/parseachangelog/releases/download/v${APP_VERSION}"
+    ARTIFACT_DOWNLOAD_URL="https://github.com/ridakk/parseachangelog/releases/download/v${APP_VERSION}"
 fi
 
 PRINT_VERBOSE=${INSTALLER_PRINT_VERBOSE:-0}
@@ -233,4 +226,4 @@ install() {
 }
 
 # Run the installation
-install "$@" || exit 1 
+install "$@" || exit 1
