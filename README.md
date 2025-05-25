@@ -18,6 +18,34 @@ A Go library and CLI tool for parsing Keep a Changelog markdown files into struc
 
 ## Installation
 
+### Using Install Script (Recommended)
+
+The easiest way to install `parseachangelog` is using the install script:
+
+```bash
+curl -sSfL https://raw.githubusercontent.com/ridakk/parseachangelog/main/install.sh | sh
+```
+
+This will:
+1. Detect your OS and architecture
+2. Download the appropriate binary
+3. Install it to `/usr/local/bin`
+
+#### Installation Options
+
+You can customize the installation using environment variables:
+
+```bash
+# Install without modifying PATH
+curl -sSfL https://raw.githubusercontent.com/ridakk/parseachangelog/main/install.sh | PARSEACHANGELOG_NO_MODIFY_PATH=1 sh
+
+# Install with verbose output
+curl -sSfL https://raw.githubusercontent.com/ridakk/parseachangelog/main/install.sh | INSTALLER_PRINT_VERBOSE=1 sh
+
+# Install from GitHub Enterprise
+curl -sSfL https://raw.githubusercontent.com/ridakk/parseachangelog/main/install.sh | PARSEACHANGELOG_INSTALLER_GHE_BASE_URL=https://github.your-enterprise.com sh
+```
+
 ### Manual Installation
 
 Download the latest release from the [releases page](https://github.com/ridakk/parseachangelog/releases) and extract the binary to your PATH.
@@ -64,7 +92,13 @@ func main() {
 # Build for your platform
 make build
 
-# Parse a changelog file
+# Parse a changelog file (defaults to CHANGELOG.md and outputs to stdout)
+./parseachangelog
+
+# Parse a custom changelog file
+./parseachangelog -input custom-changelog.md
+
+# Parse and save to a file
 ./parseachangelog -input CHANGELOG.md -output changes.json
 ```
 
@@ -74,14 +108,26 @@ make build
 {
   "versions": [
     {
+      "version": "Unreleased",
+      "Added": [
+        "New feature X",
+        "New feature Y"
+      ],
+      "Changed": [
+        "Bug A",
+        "Bug B"
+      ]
+    },
+    {
       "version": "1.0.0",
       "date": "2024-05-06",
-      "Added": ["Initial release"],
-      "Changed": [],
-      "Deprecated": [],
-      "Removed": [],
-      "Fixed": [],
-      "Security": []
+      "Added": [
+        "Initial release",
+        "Basic functionality"
+      ],
+      "Fixed": [
+        "Minor bug fixes"
+      ]
     }
   ]
 }
@@ -113,4 +159,4 @@ make format
 
 ## License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
