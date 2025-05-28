@@ -14,7 +14,7 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
-## [Unreleased]
+## [0.1.4] - 2025-05-28
 
 ### Fixed
 - install fails with permission error while copying the binary

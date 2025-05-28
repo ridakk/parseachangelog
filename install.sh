@@ -8,7 +8,7 @@
 set -e
 
 APP_NAME="parseachangelog"
-APP_VERSION="0.1.3"
+APP_VERSION="0.1.4"
 
 # Default values
 PARSEACHANGELOG_INSTALL_DIR=${PARSEACHANGELOG_INSTALL_DIR:-"/usr/local/bin"}
