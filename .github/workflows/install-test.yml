@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ main ]
 
-env:
-  PARSEACHANGELOG_INSTALLER_VERSION: 0.1.6
-
 jobs:
   test-install:
     name: Test Installation
