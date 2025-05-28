@@ -107,7 +107,10 @@ func TestVersionFiltering(t *testing.T) {
 		expected int // expected number of versions
 	}{
 		{"Unreleased", "Unreleased", 1},
+		{"unreleased", "unreleased", 1},
+		{"UNRELEASED", "UNRELEASED", 1},
 		{"Specific Version", "1.0.0", 1},
+		{"Specific Version Lowercase", "1.0.0", 1},
 		{"Non-existent Version", "2.0.0", 0},
 		{"Empty Version", "", 3}, // should return all versions
 	}
@@ -117,7 +120,7 @@ func TestVersionFiltering(t *testing.T) {
 			filteredVersions := []Version{}
 			if tc.version != "" {
 				for _, v := range changelog.Versions {
-					if v.Version == tc.version {
+					if strings.EqualFold(v.Version, tc.version) {
 						filteredVersions = append(filteredVersions, v)
 						break
 					}
@@ -131,7 +134,7 @@ func TestVersionFiltering(t *testing.T) {
 			}
 
 			if tc.version != "" && len(filteredVersions) > 0 {
-				if filteredVersions[0].Version != tc.version {
+				if !strings.EqualFold(filteredVersions[0].Version, tc.version) {
 					t.Errorf("Expected version %s, got %s", tc.version, filteredVersions[0].Version)
 				}
 			}

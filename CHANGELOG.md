@@ -14,6 +14,11 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [Unreleased]
+
+### Changed
+- version filtering is canse insensitive
+
 ## [0.1.3] - 2025-05-24
 
 ### Added

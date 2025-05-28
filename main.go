@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/ridakk/parseachangelog/parser"
 )
@@ -34,7 +35,7 @@ func main() {
 	if *version != "" {
 		filteredVersions := []parser.Version{}
 		for _, v := range changelog.Versions {
-			if v.Version == *version {
+			if strings.EqualFold(v.Version, *version) {
 				filteredVersions = append(filteredVersions, v)
 				break
 			}
