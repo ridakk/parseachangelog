@@ -23,7 +23,7 @@ jobs:
           curl -sSfL https://raw.githubusercontent.com/${{ github.repository }}/main/install.sh | INSTALLER_PRINT_VERBOSE=1 sh
 
           # Verify the binary was installed
-          parseachangelog --version
+          parseachangelog --help
 
       - name: Test Custom Installation Directory
         run: |
@@ -34,7 +34,7 @@ jobs:
           curl -sSfL https://raw.githubusercontent.com/${{ github.repository }}/main/install.sh | PARSEACHANGELOG_INSTALL_DIR=~/test-bin INSTALLER_PRINT_VERBOSE=1 sh
 
           # Verify the binary was installed in custom directory
-          ~/test-bin/parseachangelog --version
+          ~/test-bin/parseachangelog --help
 
       - name: Test Installation Without PATH Modification
         run: |
@@ -42,12 +42,12 @@ jobs:
           curl -sSfL https://raw.githubusercontent.com/${{ github.repository }}/main/install.sh | PARSEACHANGELOG_NO_MODIFY_PATH=1 INSTALLER_PRINT_VERBOSE=1 sh
 
           # Verify the binary was installed
-          /usr/local/bin/parseachangelog --version
+          /usr/local/bin/parseachangelog --help
 
       - name: Test Installation with Specific Version
         run: |
           # Install specific version
-          curl -sSfL https://raw.githubusercontent.com/${{ github.repository }}/main/install.sh | PARSEACHANGELOG_INSTALLER_VERSION=v0.1.6 INSTALLER_PRINT_VERBOSE=1 sh
+          curl -sSfL https://raw.githubusercontent.com/${{ github.repository }}/main/install.sh | PARSEACHANGELOG_INSTALLER_VERSION=0.1.6 INSTALLER_PRINT_VERBOSE=1 sh
 
           # Verify the binary was installed
-          parseachangelog --version 
+          parseachangelog --help 
