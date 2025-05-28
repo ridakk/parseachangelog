@@ -14,6 +14,11 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.1.5] - 2025-05-28
+
+### Fixed
+- fix install.sh dowload path
+
 ## [0.1.4] - 2025-05-28
 
 ### Fixed

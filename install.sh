@@ -8,7 +8,7 @@
 set -e
 
 APP_NAME="parseachangelog"
-APP_VERSION="0.1.4"
+APP_VERSION="0.1.5"
 
 # Default values
 PARSEACHANGELOG_INSTALL_DIR=${PARSEACHANGELOG_INSTALL_DIR:-"/usr/local/bin"}
@@ -68,7 +68,7 @@ detect_os_arch() {
 download_and_install() {
     local version=$1
     local temp_dir=$(mktemp -d)
-    local download_url="${PARSEACHANGELOG_INSTALLER_GHE_BASE_URL}/${PARSEACHANGELOG_INSTALLER_REPO}/releases/download/${version}/parseachangelog_${OS}_${ARCH}.tar.gz"
+    local download_url="${PARSEACHANGELOG_INSTALLER_GHE_BASE_URL}/${PARSEACHANGELOG_INSTALLER_REPO}/releases/download/v${version}/parseachangelog_${OS}_${ARCH}.tar.gz"
     
     verbose "Downloading from: $download_url"
     
