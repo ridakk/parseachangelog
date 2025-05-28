@@ -16,6 +16,9 @@ Types of changes:
 
 ## [Unreleased]
 
+### Fixed
+- install fails with permission error while copying the binary
+
 ### Changed
 - version filtering is canse insensitive
 
