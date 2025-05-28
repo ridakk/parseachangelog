@@ -59,7 +59,7 @@ jobs:
 
   release:
     name: Create Release
-    needs: [test, test-install]
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
