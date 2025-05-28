@@ -49,13 +49,13 @@ jobs:
           GOARCH: ${{ matrix.goarch || 'amd64' }}
         run: |
           go build -o parseachangelog${{ matrix.ext }} ./main.go
-          tar -czf parseachangelog_${{ matrix.name }}.tar.gz parseachangelog${{ matrix.ext }}
+          tar -czf parseachangelog-${{ matrix.name }}.tar.gz parseachangelog${{ matrix.ext }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: parseachangelog_${{ matrix.name }}
-          path: parseachangelog_${{ matrix.name }}.tar.gz
+          name: parseachangelog-${{ matrix.name }}
+          path: parseachangelog-${{ matrix.name }}.tar.gz
 
   release:
     name: Create Release
@@ -73,7 +73,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            artifacts/parseachangelog_*/parseachangelog_*.tar.gz
+            artifacts/parseachangelog-*/parseachangelog-*.tar.gz
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

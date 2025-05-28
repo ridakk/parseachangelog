@@ -32,11 +32,11 @@ build:
 build-all:
 	@echo "Building for all platforms..."
 	@mkdir -p dist
-	GOOS=darwin GOARCH=amd64 go build -o dist/parseachangelog_darwin_amd64 ./main.go
-	GOOS=darwin GOARCH=arm64 go build -o dist/parseachangelog_darwin_arm64 ./main.go
-	GOOS=windows GOARCH=amd64 go build -o dist/parseachangelog_windows_amd64.exe ./main.go
-	GOOS=linux GOARCH=amd64 go build -o dist/parseachangelog_linux_amd64 ./main.go
-	GOOS=linux GOARCH=arm64 go build -o dist/parseachangelog_linux_arm64 ./main.go
+	GOOS=darwin GOARCH=amd64 go build -o dist/parseachangelog-darwin-amd64 ./main.go
+	GOOS=darwin GOARCH=arm64 go build -o dist/parseachangelog-darwin-arm64 ./main.go
+	GOOS=windows GOARCH=amd64 go build -o dist/parseachangelog-windows-amd64.exe ./main.go
+	GOOS=linux GOARCH=amd64 go build -o dist/parseachangelog-linux-amd64 ./main.go
+	GOOS=linux GOARCH=arm64 go build -o dist/parseachangelog-linux-arm64 ./main.go
 	@echo "Build complete. Binaries are in the dist directory."
 
 # Clean build artifacts
