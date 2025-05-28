@@ -8,7 +8,6 @@
 set -e
 
 APP_NAME="parseachangelog"
-APP_VERSION="latest"
 
 # Default values
 PARSEACHANGELOG_INSTALL_DIR=${PARSEACHANGELOG_INSTALL_DIR:-"/usr/local/bin"}
@@ -17,7 +16,6 @@ PARSEACHANGELOG_INSTALLER_REPO=${PARSEACHANGELOG_INSTALLER_REPO:-"ridakk/parseac
 PARSEACHANGELOG_INSTALLER_VERSION=${PARSEACHANGELOG_INSTALLER_VERSION:-"latest"}
 PARSEACHANGELOG_NO_MODIFY_PATH=${PARSEACHANGELOG_NO_MODIFY_PATH:-"0"}
 INSTALLER_PRINT_VERBOSE=${INSTALLER_PRINT_VERBOSE:-"0"}
-PARSEACHANGELOG_INSTALLER_VERSION=${PARSEACHANGELOG_INSTALLER_VERSION:-"$APP_VERSION"}
 
 # Function to print verbose messages
 verbose() {
@@ -42,9 +40,9 @@ needs_sudo() {
 # Function to get the latest version
 get_latest_version() {
     if command_exists curl; then
-        curl -s "${PARSEACHANGELOG_INSTALLER_GHE_BASE_URL}/${PARSEACHANGELOG_INSTALLER_REPO}/releases/latest" | grep -o '"tag_name": ".*"' | sed 's/"tag_name": "//;s/"//'
+        curl -s "https://api.github.com/repos/${PARSEACHANGELOG_INSTALLER_REPO}/releases/latest" | grep -i "tag_name" | awk -F '"' '{print $4}'
     elif command_exists wget; then
-        wget -qO- "${PARSEACHANGELOG_INSTALLER_GHE_BASE_URL}/${PARSEACHANGELOG_INSTALLER_REPO}/releases/latest" | grep -o '"tag_name": ".*"' | sed 's/"tag_name": "//;s/"//'
+        wget -qO- "https://api.github.com/repos/${PARSEACHANGELOG_INSTALLER_REPO}/releases/latest" | grep -i "tag_name" | awk -F '"' '{print $4}'
     else
         echo "Error: Neither curl nor wget is installed. Please install one of them and try again."
         exit 1
@@ -104,7 +102,7 @@ main() {
     
     # Detect OS and architecture
     detect_os_arch
-    
+
     # Get version
     if [ "$PARSEACHANGELOG_INSTALLER_VERSION" = "latest" ]; then
         PARSEACHANGELOG_INSTALLER_VERSION=$(get_latest_version)
