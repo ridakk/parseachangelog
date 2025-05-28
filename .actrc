@@ -1,0 +1,4 @@
+--bind
+--env-file .env
+--secret-file .secrets
+--container-architecture linux/amd64 

@@ -148,6 +148,7 @@ make build
 ### Prerequisites
 - Go 1.21 or later
 - Make (for build commands)
+- Docker (for running GitHub Actions locally)
 
 ### Build Commands
 ```bash
@@ -166,6 +167,41 @@ make lint
 # Format code
 make format
 ```
+
+### Running GitHub Actions Locally
+
+You can run GitHub Actions locally using [act](https://github.com/nektos/act). This is useful for testing workflows before pushing to GitHub.
+
+1. Install act:
+```bash
+# macOS
+brew install act
+
+# Linux
+curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
+
+# Windows
+choco install act-cli
+```
+
+2. Run test workflows:
+```bash
+# Run test workflow
+act -W .github/workflows/test.yml
+
+# Run install test workflow
+act -W .github/workflows/install-test.yml
+
+# Run both workflows
+act -W .github/workflows/test.yml -W .github/workflows/install-test.yml
+```
+
+3. Run with verbose output:
+```bash
+act -v
+```
+
+Note: Some workflows might require secrets or environment variables. You can provide these in `.env` and `.secrets` files.
 
 ## License
 

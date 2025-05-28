@@ -1,0 +1,53 @@
+name: Installation Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  PARSEACHANGELOG_INSTALLER_VERSION: 0.1.5
+
+jobs:
+  test-install:
+    name: Test Installation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Test Installation Script
+        run: |
+          # Download and run the installation script
+          curl -sSfL https://raw.githubusercontent.com/${{ github.repository }}/main/install.sh | INSTALLER_PRINT_VERBOSE=1 sh
+
+          # Verify the binary was installed
+          parseachangelog --version
+
+      - name: Test Custom Installation Directory
+        run: |
+          # Create a custom installation directory
+          mkdir -p ~/test-bin
+
+          # Install to custom directory
+          curl -sSfL https://raw.githubusercontent.com/${{ github.repository }}/main/install.sh | PARSEACHANGELOG_INSTALL_DIR=~/test-bin INSTALLER_PRINT_VERBOSE=1 sh
+
+          # Verify the binary was installed in custom directory
+          ~/test-bin/parseachangelog --version
+
+      - name: Test Installation Without PATH Modification
+        run: |
+          # Install without PATH modification
+          curl -sSfL https://raw.githubusercontent.com/${{ github.repository }}/main/install.sh | PARSEACHANGELOG_NO_MODIFY_PATH=1 INSTALLER_PRINT_VERBOSE=1 sh
+
+          # Verify the binary was installed
+          /usr/local/bin/parseachangelog --version
+
+      - name: Test Installation with Specific Version
+        run: |
+          # Install specific version
+          curl -sSfL https://raw.githubusercontent.com/${{ github.repository }}/main/install.sh | PARSEACHANGELOG_INSTALLER_VERSION=v0.1.5 INSTALLER_PRINT_VERBOSE=1 sh
+
+          # Verify the binary was installed
+          parseachangelog --version 

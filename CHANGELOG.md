@@ -14,6 +14,11 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.1.6] - 2025-05-28
+
+### Fixed
+- missing amd64 binary for linux
+
 ## [0.1.5] - 2025-05-28
 
 ### Fixed
