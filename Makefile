@@ -63,10 +63,8 @@ release:
 	@# Update version in main.go
 	@if [ "$(shell uname)" = "Darwin" ]; then \
 		sed -i '' 's/Version = ".*"/Version = "$(version)"/' main.go; \
-		# sed -i '' 's/APP_VERSION=".*"/APP_VERSION="$(version)"/' install.sh; \
 	else \
 		sed -i 's/Version = ".*"/Version = "$(version)"/' main.go; \
-		# sed -i 's/APP_VERSION=".*"/APP_VERSION="$(version)"/' install.sh; \
 	fi
 
 	@# Create git tag and push

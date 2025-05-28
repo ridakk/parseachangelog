@@ -40,9 +40,9 @@ needs_sudo() {
 # Function to get the latest version
 get_latest_version() {
     if command_exists curl; then
-        curl -s "https://api.github.com/repos/${PARSEACHANGELOG_INSTALLER_REPO}/releases/latest" | grep -i "tag_name" | awk -F '"' '{print $4}' | sed 's/^v//'
+        curl -s "https://api.github.com/repos/${PARSEACHANGELOG_INSTALLER_REPO}/releases/latest" | grep -i "tag_name" | awk -F '"' '{print $4}' | tr -d v
     elif command_exists wget; then
-        wget -qO- "https://api.github.com/repos/${PARSEACHANGELOG_INSTALLER_REPO}/releases/latest" | grep -i "tag_name" | awk -F '"' '{print $4}' | sed 's/^v//'
+        wget -qO- "https://api.github.com/repos/${PARSEACHANGELOG_INSTALLER_REPO}/releases/latest" | grep -i "tag_name" | awk -F '"' '{print $4}' | tr -d v
     else
         echo "Error: Neither curl nor wget is installed. Please install one of them and try again."
         exit 1
