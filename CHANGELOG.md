@@ -14,6 +14,11 @@ Types of changes:
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities.
 
+## [0.1.7] - 2025-05-28
+
+### Fixed
+- installation script fails to extract latest version
+
 ## [0.1.6] - 2025-05-28
 
 ### Fixed
