@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  PARSEACHANGELOG_INSTALLER_VERSION: 0.1.5
+  PARSEACHANGELOG_INSTALLER_VERSION: 0.1.6
 
 jobs:
   test-install:
@@ -47,7 +47,7 @@ jobs:
       - name: Test Installation with Specific Version
         run: |
           # Install specific version
-          curl -sSfL https://raw.githubusercontent.com/${{ github.repository }}/main/install.sh | PARSEACHANGELOG_INSTALLER_VERSION=v0.1.5 INSTALLER_PRINT_VERBOSE=1 sh
+          curl -sSfL https://raw.githubusercontent.com/${{ github.repository }}/main/install.sh | PARSEACHANGELOG_INSTALLER_VERSION=v0.1.6 INSTALLER_PRINT_VERBOSE=1 sh
 
           # Verify the binary was installed
           parseachangelog --version 
